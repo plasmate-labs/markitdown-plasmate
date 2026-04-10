@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "markitdown-plasmate"
+dynamic = ["version"]
+description = "MarkItDown plugin: convert live URLs via Plasmate instead of BeautifulSoup (10-100x fewer tokens)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+keywords = ["markitdown", "markitdown-plugin", "plasmate", "llm", "markdown", "web-scraping", "agents"]
+authors = [
+  { name = "David Hurley", email = "dbhurley@me.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Text Processing :: Markup",
+  "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = [
+  "markitdown>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-mock>=3.0",
+]
+
+[project.urls]
+Documentation = "https://github.com/dbhurley/markitdown-plasmate#readme"
+Issues = "https://github.com/dbhurley/markitdown-plasmate/issues"
+Source = "https://github.com/dbhurley/markitdown-plasmate"
+
+# IMPORTANT: MarkItDown discovers plugins via this entry point.
+[project.entry-points."markitdown.plugin"]
+plasmate = "markitdown_plasmate"
+
+[tool.hatch.version]
+path = "src/markitdown_plasmate/__about__.py"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/markitdown_plasmate"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/markitdown_plasmate"]
